@@ -2,6 +2,7 @@ from aws_cdk import core, aws_eks
 from .eks_base import EKSBase
 from .eks_manifest import EKSManifest
 from .alb_ingress import ALBIngressController
+from .prometheus import Prometheus
 
 
 class EKSWorkshop(core.Stack):
@@ -29,6 +30,7 @@ class EKSWorkshop(core.Stack):
         }
         
         base_cluster = EKSBase(self, "Base", cluster_configuration=config_dict)
+        prometheus_monitoring = Prometheus(self, "Prometheus", cluster=base_cluster.cluster)
         nodejs_service = EKSManifest(self, "NodeJs", cluster=base_cluster.cluster, manifest=self.nodejs_service)
         crystal_service = EKSManifest(self, "CrystalBackend", cluster=base_cluster.cluster, manifest=self.crystal_service)
         alb_ingress = ALBIngressController(self, "ALBIngress", cluster=base_cluster.cluster)

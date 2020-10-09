@@ -43,11 +43,11 @@ frontend_service_details = {
 # Cluster name: If none, will autogenerate
 cluster_name = None 
 # Capacity details: Cluster size of small/med/large
-capacity_details = "small"
+capacity_details = "large"
 # Fargate enabled: Create a fargate profile on the cluster
 fargate_enabled = True
 # Bottlerocket ASG: Create a self managed node group of Bottlerocket nodes
-bottlerocket_asg = True
+bottlerocket_asg = False
 
 
 app = core.App()
